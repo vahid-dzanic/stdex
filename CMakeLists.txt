@@ -3,26 +3,25 @@ cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 project(stdex VERSION 1.0.0)
 
 set(HEADER_FILES
-  include/stdex/array_ext.h
-  include/stdex/deque_ext.h
-  include/stdex/forward_list_ext.h
-  include/stdex/functional_ext.h
-  include/stdex/list_ext.h
-  include/stdex/map_ext.h
-  include/stdex/pair_ext.h
-  include/stdex/queue_ext.h
-  include/stdex/set_ext.h
-  include/stdex/stack_ext.h
+  include/stdex/array_ex.h
+  include/stdex/deque_ex.h
+  include/stdex/forward_list_ex.h
+  include/stdex/functional_ex.h
+  include/stdex/list_ex.h
+  include/stdex/map_ex.h
+  include/stdex/pair_ex.h
+  include/stdex/queue_ex.h
+  include/stdex/set_ex.h
+  include/stdex/stack_ex.h
   include/stdex/std_type_sets.h
-  include/stdex/string_ext.h
-  include/stdex/traits_ext.h
-  include/stdex/tuple_ext.h
-  include/stdex/unordered_map_ext.h
-  include/stdex/unordered_set_ext.h
-  include/stdex/vector_ext.h)
+  include/stdex/string_ex.h
+  include/stdex/traits_ex.h
+  include/stdex/tuple_ex.h
+  include/stdex/unordered_map_ex.h
+  include/stdex/unordered_set_ex.h
+  include/stdex/vector_ex.h)
 
 add_library(${PROJECT_NAME} SHARED
-  ${HEADER_FILES}
   src/functional_ext.cpp
   src/string_ext.cpp)
 add_library(chili::${PROJECT_NAME} ALIAS ${PROJECT_NAME})

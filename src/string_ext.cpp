@@ -1,4 +1,4 @@
-#include "stdex/string_ext.h"
+#include "stdex/string_ex.h"
 
 namespace chili::stdex {
 

@@ -1,6 +1,6 @@
-#include "stdex/functional_ext.h"
+#include "stdex/functional_ex.h"
 
-namespace chili::chili_private {
+namespace chili::restricted {
 
 std::string rm_ampersand(std::string&& name)
 {

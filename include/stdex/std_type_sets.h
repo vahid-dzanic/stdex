@@ -1,10 +1,34 @@
 #pragma once
 
-#include "array_ext.h"
-#include "deque_ext.h"
-#include "forward_list_ext.h"
-#include "list_ext.h"
-#include "vector_ext.h"
+// This file is part of stdex library, stdex is an extension of the c++-standard library,
+// especially the type traits for standard containers.
+//
+// Copyright (C) 2019 Vahid Dzanic <vdc@gmx.ch>
+//
+// stdex is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 3 of the License, or (at your option) any later version.
+//
+// Alternatively, you can redistribute it and/or
+// modify it under the terms of the GNU General Public License as
+// published by the Free Software Foundation; either version 2 of
+// the License, or (at your option) any later version.
+//
+// stdex is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License or the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License and a copy of the GNU General Public License along with
+// stdex. If not, see <http://www.gnu.org/licenses/>.
+
+#include "array_ex.h"
+#include "deque_ex.h"
+#include "forward_list_ex.h"
+#include "list_ex.h"
+#include "vector_ex.h"
 
 namespace chili::stdex::traits {
 
@@ -17,8 +41,8 @@ struct is_sequential_container
 
 } // namespace chili::stdex::traits
 
-#include "queue_ext.h"
-#include "stack_ext.h"
+#include "queue_ex.h"
+#include "stack_ex.h"
 
 namespace chili::stdex::traits {
 
@@ -29,8 +53,8 @@ struct is_adaptor_container
 
 } // namespace chili::stdex::traits
 
-#include "map_ext.h"
-#include "set_ext.h"
+#include "map_ex.h"
+#include "set_ex.h"
 
 namespace chili::stdex::traits {
 
@@ -42,7 +66,7 @@ struct is_ordered_associative_container : public std::integral_constant<bool,
 
 } // namespace chili::stdex::traits
 
-#include "unordered_set_ext.h"
+#include "unordered_set_ex.h"
 
 namespace chili::stdex::traits {
 
@@ -55,7 +79,7 @@ struct is_set_container
 
 } // namespace chili::stdex::traits
 
-#include "unordered_map_ext.h"
+#include "unordered_map_ex.h"
 
 namespace chili::stdex::traits {
 
@@ -88,8 +112,8 @@ struct is_collection
 
 } // namespace chili::stdex::traits
 
-#include "pair_ext.h"
-#include "tuple_ext.h"
+#include "pair_ex.h"
+#include "tuple_ex.h"
 
 namespace chili::stdex::traits {
 
@@ -100,7 +124,7 @@ struct is_container
 
 } // namespace chili::stdex::traits
 
-#include "string_ext.h"
+#include "string_ex.h"
 
 namespace chili::stdex::traits {
 
