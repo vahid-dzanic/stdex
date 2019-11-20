@@ -8,8 +8,8 @@ add_executable(fast_stdex
 target_link_libraries(fast_stdex
   PRIVATE
     stdex
-    GTest::GTest
-    GTest::Main)
+    gtest
+    gtest_main)
 
 target_compile_options(fast_stdex
   PRIVATE
