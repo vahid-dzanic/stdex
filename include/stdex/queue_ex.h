@@ -28,7 +28,7 @@
 
 #include <queue>
 
-namespace chili::stdex::traits {
+namespace stdex::traits {
 
 template<typename _Tp>
 struct is_queue_raw : public std::integral_constant<bool, is_instantiation_of<std::queue, _Tp>::value>
@@ -42,4 +42,4 @@ using is_queue = is_queue_raw<typename raw<_Tp>::type>;
 template<typename _Tp>
 using is_priority_queue = is_priority_queue_raw<typename raw<_Tp>::type>;
 
-} // namespace chili::stdex::traits
+} // namespace stdex::traits

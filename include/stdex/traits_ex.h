@@ -29,7 +29,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace chili::stdex::traits {
+namespace stdex::traits {
 
 template<template<typename...> class _Tp1, typename _Args>
 struct is_instantiation_of : std::false_type
@@ -56,4 +56,4 @@ public:
   using type = type_cv_less<type_ref_less<type_ptr_less<_Tp>>>;
 };
 
-} // namespace chili::stdex::traits
+} // namespace stdex::traits

@@ -28,9 +28,9 @@
 
 #include <functional>
 
-namespace chili {
+namespace stdex {
 
-template<class _Func>
+template<typename _Func>
 struct std_func_sign
 {
   static constexpr std::size_t arity = 0;
@@ -52,10 +52,10 @@ struct std_func_sign<std::function<_R(_A...)>>
   using argument = typename std::tuple_element<_N, arguments>::type;
 };
 
-template<class _Func>
+template<typename _Func>
 class function;
 
-template<class _R, class... _A>
+template<typename _R, typename... _A>
 class function<_R(_A...)>
 {
 public:
@@ -117,31 +117,31 @@ private:
   std::string name_;
 };
 
-template<class _R, class... _A>
-bool operator==(const chili::function<_R(_A...)>& __f, std::nullptr_t) noexcept
+template<typename _R, typename... _A>
+bool operator==(const function<_R(_A...)>& __f, std::nullptr_t) noexcept
 {
   return !static_cast<bool>(__f);
 }
 
-template<class _R, class... _A>
-bool operator==(std::nullptr_t, const chili::function<_R(_A...)>& __f) noexcept
+template<typename _R, typename... _A>
+bool operator==(std::nullptr_t, const function<_R(_A...)>& __f) noexcept
 {
   return !static_cast<bool>(__f);
 }
 
-template<class _R, class... _A>
-bool operator!=(const chili::function<_R(_A...)>& __f, std::nullptr_t) noexcept
+template<typename _R, typename... _A>
+bool operator!=(const function<_R(_A...)>& __f, std::nullptr_t) noexcept
 {
   return static_cast<bool>(__f);
 }
 
-template<class _R, class... _A>
-bool operator!=(std::nullptr_t, const chili::function<_R(_A...)>& __f) noexcept
+template<typename _R, typename... _A>
+bool operator!=(std::nullptr_t, const function<_R(_A...)>& __f) noexcept
 {
   return static_cast<bool>(__f);
 }
 
-template<class _Func>
+template<typename _Func>
 struct func_sign
 {
   static constexpr std::size_t arity = 0;
@@ -153,7 +153,7 @@ struct func_sign
   using argument = void;
 };
 
-template<class _R, class... _A>
+template<typename _R, typename... _A>
 struct func_sign<_R (&)(_A...)>
 {
   static constexpr std::size_t arity = sizeof...(_A);
@@ -165,7 +165,7 @@ struct func_sign<_R (&)(_A...)>
   using argument = typename std::tuple_element<_N, arguments>::type;
 };
 
-template<class _R, class _C, class... _A>
+template<typename _R, typename _C, typename... _A>
 struct func_sign<_R (_C::*)(_A...)>
 {
   static constexpr std::size_t arity = sizeof...(_A);
@@ -180,7 +180,7 @@ struct func_sign<_R (_C::*)(_A...)>
 namespace restricted {
 std::string rm_ampersand(std::string&& name);
 
-template<class _Func, std::size_t... index>
+template<typename _Func, std::size_t... index>
 decltype(auto) create_index(_Func&& func, std::string&& name, std::index_sequence<index...>)
 {
   using __return_type = function<typename func_sign<_Func>::func_type>;
@@ -189,7 +189,7 @@ decltype(auto) create_index(_Func&& func, std::string&& name, std::index_sequenc
                        rm_ampersand(std::forward<std::string>(name)));
 }
 
-template<class _Func, class _Class, std::size_t... index>
+template<typename _Func, typename _Class, std::size_t... index>
 decltype(auto) create_index_ptr(_Func&& func, std::string&& name, _Class* ptr2class, std::index_sequence<index...>)
 {
   using __return_type = function<typename func_sign<_Func>::func_type>;
@@ -199,9 +199,9 @@ decltype(auto) create_index_ptr(_Func&& func, std::string&& name, _Class* ptr2cl
     },
     rm_ampersand(std::forward<std::string>(name)));
 }
-} // namespace chili_private
+} // namespace restricted
 
-template<class _Func>
+template<typename _Func>
 decltype(auto) bind(_Func&& func, std::string&& name)
 {
   using __return_type = function<typename func_sign<_Func>::func_type>;
@@ -209,7 +209,7 @@ decltype(auto) bind(_Func&& func, std::string&& name)
                        restricted::rm_ampersand(std::forward<std::string>(name)));
 }
 
-template<class _Func, class... _A>
+template<typename _Func, typename... _A>
 decltype(auto) bind(_Func&& func, std::string&& name, _A&&... args)
 {
   using __return_type = function<typename func_sign<_Func>::func_type>;
@@ -217,9 +217,9 @@ decltype(auto) bind(_Func&& func, std::string&& name, _A&&... args)
                        restricted::rm_ampersand(std::forward<std::string>(name)));
 }
 
-#define chili_bind(FUNC, ...) chili::bind(FUNC, #FUNC, ##__VA_ARGS__)
+#define stdex_bind(FUNC, ...) bind(FUNC, #FUNC, ##__VA_ARGS__)
 
-template<class _Func>
+template<typename _Func>
 decltype(auto) create(_Func&& func, std::string&& name)
 {
   static_assert(std::is_void<typename func_sign<_Func>::class_type>::value,
@@ -230,7 +230,7 @@ decltype(auto) create(_Func&& func, std::string&& name)
     std::forward<_Func>(func), std::forward<std::string>(name), std::make_index_sequence<__return_type::arity>{});
 }
 
-template<class _Func>
+template<typename _Func>
 decltype(auto) create(_Func&& func, std::string&& name, typename func_sign<_Func>::class_type* ptr2class)
 {
   static_assert(not std::is_void<typename func_sign<_Func>::class_type>::value,
@@ -243,7 +243,7 @@ decltype(auto) create(_Func&& func, std::string&& name, typename func_sign<_Func
                                          std::make_index_sequence<__return_type::arity>{});
 }
 
-template<class _Func, class... _A>
+template<typename _Func, typename... _A>
 decltype(auto) create(_Func&& func, std::string&& name, _A&&... args)
 {
   static_assert(std::is_void<typename func_sign<_Func>::class_type>::value,
@@ -258,7 +258,7 @@ decltype(auto) create(_Func&& func, std::string&& name, _A&&... args)
                        restricted::rm_ampersand(std::forward<std::string>(name)));
 }
 
-template<class _Func, class... _A>
+template<typename _Func, typename... _A>
 decltype(auto) create(_Func&& func, std::string&& name, typename func_sign<_Func>::class_type* ptr2class, _A&&... args)
 {
   static_assert(not std::is_void<typename func_sign<_Func>::class_type>::value,
@@ -273,7 +273,7 @@ decltype(auto) create(_Func&& func, std::string&& name, typename func_sign<_Func
     [pFunc = std::decay_t<_Func>(func), ptr2class, args...]() { return (ptr2class->*pFunc)(args...); },
     restricted::rm_ampersand(std::forward<std::string>(name)));
 }
-#define chili_create(FUNC, ...) chili::create(FUNC, #FUNC, ##__VA_ARGS__)
+#define stdex_create(FUNC, ...) create(FUNC, #FUNC, ##__VA_ARGS__)
 
 template<typename _Tp>
 struct is_function : public std::integral_constant<bool, stdex::traits::is_instantiation_of<function, _Tp>::value>
@@ -283,4 +283,4 @@ template<typename _Tp>
 struct is_std_function
   : public std::integral_constant<bool, stdex::traits::is_instantiation_of<std::function, _Tp>::value>
 {};
-} // namespace chili
+} // namespace stdex

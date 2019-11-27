@@ -24,11 +24,11 @@
 // License and a copy of the GNU General Public License along with
 // stdex. If not, see <http://www.gnu.org/licenses/>.
 
-namespace chili::restricted {
+namespace restricted {
 
 std::string rm_ampersand(std::string&& name)
 {
   return name.front() == '&' ? name.substr(1) : name;
 }
 
-} // namespace chili::chili_private
+} // namespace restricted

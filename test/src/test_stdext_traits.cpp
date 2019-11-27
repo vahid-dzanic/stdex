@@ -53,44 +53,44 @@ TYPED_TEST_CASE(test_fixture_raw, types_to_test_raw);
 
 TYPED_TEST(test_fixture_raw, test_expecting_true)
 {
-  bool bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<TypeParam>::type>::value;
+  bool bValue = std::is_same<raw_type, typename stdex::traits::raw<TypeParam>::type>::value;
   EXPECT_TRUE(bValue);
 }
 
 TEST(TestTraitsExt, test_raw_type)
 {
   bool bValue = false;
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<raw_type>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<raw_type>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<raw_type*>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<raw_type*>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<raw_type&>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<raw_type&>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<raw_type&&>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<raw_type&&>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<const raw_type>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<const raw_type>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<const raw_type*>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<const raw_type*>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<const raw_type&>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<const raw_type&>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<const raw_type&&>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<const raw_type&&>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<volatile raw_type>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<volatile raw_type>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<volatile raw_type*>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<volatile raw_type*>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<volatile raw_type&>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<volatile raw_type&>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<volatile raw_type&&>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<volatile raw_type&&>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<const volatile raw_type>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<const volatile raw_type>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<const volatile raw_type*>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<const volatile raw_type*>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<const volatile raw_type&>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<const volatile raw_type&>::type>::value;
   EXPECT_TRUE(bValue);
-  bValue = std::is_same<raw_type, typename chili::stdex::traits::raw<const volatile raw_type&&>::type>::value;
+  bValue = std::is_same<raw_type, typename stdex::traits::raw<const volatile raw_type&&>::type>::value;
   EXPECT_TRUE(bValue);
 }
 
@@ -141,22 +141,22 @@ TYPED_TEST_CASE(test_fixture_expect_true, builtin_and_std_types);
 
 TYPED_TEST(test_fixture_expect_true, test_is_std_type)
 {
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<TypeParam>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<TypeParam*>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<TypeParam&>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<TypeParam&&>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<const TypeParam>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<const TypeParam*>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<const TypeParam&>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<const TypeParam&&>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<volatile TypeParam>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<volatile TypeParam*>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<volatile TypeParam&>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<volatile TypeParam&&>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<const volatile TypeParam>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<const volatile TypeParam*>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<const volatile TypeParam&>::value);
-  EXPECT_TRUE(chili::stdex::traits::is_std_type<const volatile TypeParam&&>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<TypeParam>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<TypeParam*>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<TypeParam&>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<TypeParam&&>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<const TypeParam>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<const TypeParam*>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<const TypeParam&>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<const TypeParam&&>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<volatile TypeParam>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<volatile TypeParam*>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<volatile TypeParam&>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<volatile TypeParam&&>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<const volatile TypeParam>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<const volatile TypeParam*>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<const volatile TypeParam&>::value);
+  EXPECT_TRUE(stdex::traits::is_std_type<const volatile TypeParam&&>::value);
 }
 
 template<typename _Tp>
@@ -180,7 +180,7 @@ TYPED_TEST_CASE(test_fixture_expect_false, not_builtin_and_std_types);
 
 TYPED_TEST(test_fixture_expect_false, test_is_not_std_type)
 {
-  EXPECT_FALSE(chili::stdex::traits::is_std_type<TypeParam>::value);
+  EXPECT_FALSE(stdex::traits::is_std_type<TypeParam>::value);
 }
 
 
@@ -191,7 +191,7 @@ TYPED_TEST(test_fixture_expect_false, test_is_not_std_type)
 
 //#include <iostream>
 
-// template<class T>
+// template<typename T>
 // class A
 //{
 // public:

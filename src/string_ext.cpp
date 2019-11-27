@@ -24,7 +24,7 @@
 // License and a copy of the GNU General Public License along with
 // stdex. If not, see <http://www.gnu.org/licenses/>.
 
-namespace chili::stdex {
+namespace stdex {
 
 void push_back_nonempty_string(const std::string& str, std::vector<std::string>& lst)
 {
@@ -102,4 +102,4 @@ void chop(std::string& text, std::size_t count)
   }
 }
 
-}  // namespace chili::stdex
+}  // namespace stdex

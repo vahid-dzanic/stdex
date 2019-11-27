@@ -29,7 +29,7 @@
 #include <tuple>
 #include <utility>
 
-namespace chili::stdex::traits {
+namespace stdex::traits {
 
 template<typename _Tp>
 struct is_tuple_raw : std::false_type
@@ -69,4 +69,4 @@ private:
   }
 };
 
-} // namespace chili::stdex::traits
+} // namespace stdex::traits

@@ -29,7 +29,7 @@
 #include <string>
 #include <vector>
 
-namespace chili::stdex {
+namespace stdex {
 namespace traits {
 
 template<typename _Tp>
@@ -48,4 +48,4 @@ bool starts_with(const std::string& text, const std::string& search_pattern);
 bool ends_with(const std::string& text, const std::string& search_pattern);
 void chop(std::string& text, std::size_t count);
 
-} // namespace stdext::chili
+} // namespace stdext
