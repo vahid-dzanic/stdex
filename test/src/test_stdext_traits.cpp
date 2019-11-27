@@ -170,9 +170,11 @@ struct B
 union C
 {};
 enum D
-{};
+{
+};
 enum class E
-{};
+{
+};
 
 typedef ::testing::Types<A, B, C, D, E, void, A&, A*, A&&, const A, volatile A> not_builtin_and_std_types;
 
@@ -182,8 +184,6 @@ TYPED_TEST(test_fixture_expect_false, test_is_not_std_type)
 {
   EXPECT_FALSE(stdex::traits::is_std_type<TypeParam>::value);
 }
-
-
 
 //----------------------------------------------------------------------------------------------------------------------
 // std::bitset is not implementable now

@@ -102,4 +102,4 @@ void chop(std::string& text, std::size_t count)
   }
 }
 
-}  // namespace stdex
+} // namespace stdex

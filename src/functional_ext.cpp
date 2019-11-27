@@ -26,9 +26,6 @@
 
 namespace restricted {
 
-std::string rm_ampersand(std::string&& name)
-{
-  return name.front() == '&' ? name.substr(1) : name;
-}
+std::string rm_ampersand(std::string&& name) { return name.front() == '&' ? name.substr(1) : name; }
 
 } // namespace restricted

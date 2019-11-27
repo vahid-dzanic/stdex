@@ -48,4 +48,4 @@ bool starts_with(const std::string& text, const std::string& search_pattern);
 bool ends_with(const std::string& text, const std::string& search_pattern);
 void chop(std::string& text, std::size_t count);
 
-} // namespace stdext
+} // namespace stdex

@@ -74,7 +74,7 @@ public:
     , name_(name)
   {}
 
-  //TODO vadz: fix 'rule of five'
+  // TODO vadz: fix 'rule of five'
 
   //  function(const std_func_type& func, std::string&& name = "")
   //    : mFunc(func)
@@ -102,7 +102,7 @@ public:
 
   _R operator()(_A... args) { return func_(args...); }
 
-  _R operator()(arguments&& args) { return invoke(std::forward<arguments>(args), std::make_index_sequence<arity>{}); }
+  _R operator()(arguments&& args) { return invoke(std::forward<arguments>(args), std::make_index_sequence<arity> {}); }
 
   const std::string& name() const noexcept { return name_; }
 
@@ -227,7 +227,7 @@ decltype(auto) create(_Func&& func, std::string&& name)
   using __return_type = function<typename func_sign<_Func>::func_type>;
 
   return restricted::create_index(
-    std::forward<_Func>(func), std::forward<std::string>(name), std::make_index_sequence<__return_type::arity>{});
+    std::forward<_Func>(func), std::forward<std::string>(name), std::make_index_sequence<__return_type::arity> {});
 }
 
 template<typename _Func>
@@ -238,9 +238,9 @@ decltype(auto) create(_Func&& func, std::string&& name, typename func_sign<_Func
   using __return_type = function<typename func_sign<_Func>::func_type>;
 
   return restricted::create_index_ptr(std::forward<_Func>(func),
-                                         std::forward<std::string>(name),
-                                         ptr2class,
-                                         std::make_index_sequence<__return_type::arity>{});
+                                      std::forward<std::string>(name),
+                                      ptr2class,
+                                      std::make_index_sequence<__return_type::arity> {});
 }
 
 template<typename _Func, typename... _A>
