@@ -217,7 +217,7 @@ decltype(auto) bind(_Func&& func, std::string&& name, _A&&... args)
                        restricted::rm_ampersand(std::forward<std::string>(name)));
 }
 
-#define stdex_bind(FUNC, ...) bind(FUNC, #FUNC, ##__VA_ARGS__)
+#define stdex_bind(FUNC, ...) stdex::bind(FUNC, #FUNC, ##__VA_ARGS__)
 
 template<typename _Func>
 decltype(auto) create(_Func&& func, std::string&& name)
@@ -273,7 +273,7 @@ decltype(auto) create(_Func&& func, std::string&& name, typename func_sign<_Func
     [pFunc = std::decay_t<_Func>(func), ptr2class, args...]() { return (ptr2class->*pFunc)(args...); },
     restricted::rm_ampersand(std::forward<std::string>(name)));
 }
-#define stdex_create(FUNC, ...) create(FUNC, #FUNC, ##__VA_ARGS__)
+#define stdex_create(FUNC, ...) stdex::create(FUNC, #FUNC, ##__VA_ARGS__)
 
 template<typename _Tp>
 struct is_function : public std::integral_constant<bool, stdex::traits::is_instantiation_of<function, _Tp>::value>
