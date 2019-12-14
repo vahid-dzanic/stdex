@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: fetch dependencies
-      run: apt-get install gtest
+      run: sudo apt-get install gtest
     - name: prepare build directory
       run: mkdir build && cd build
     - name: configure
