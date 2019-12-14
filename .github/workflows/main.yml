@@ -9,8 +9,12 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - name: fetch dependencies
+      run: apt-get install gtest
+    - name: prepare build directory
+      run: mkdir build && cd build
     - name: configure
-      run: ls -lA; cmake .
+      run: cmake ..
     - name: make
       run: make -j${nproc}
     - name: test
