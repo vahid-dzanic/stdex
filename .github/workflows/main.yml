@@ -1,0 +1,17 @@
+name: C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: configure
+      run: ls -lA; cmake .
+    - name: make
+      run: make -j${nproc}
+    - name: test
+      run: ctest -j${nproc}
