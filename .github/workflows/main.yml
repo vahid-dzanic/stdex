@@ -10,11 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: fetch dependencies
-      run: sudo apt-get install gtest
-    - name: prepare build directory
-      run: mkdir build && cd build
+      run: sudo apt-get update && sudo apt-get install gtest
     - name: configure
-      run: cmake ..
+      run: cmake .
     - name: make
       run: make -j${nproc}
     - name: test
