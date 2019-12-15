@@ -9,7 +9,8 @@ target_link_libraries(fast_stdex
   PRIVATE
     stdex
     gtest
-    gtest_main)
+    gtest_main
+    pthread)
 
 target_compile_options(fast_stdex
   PRIVATE
