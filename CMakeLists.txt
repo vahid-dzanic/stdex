@@ -39,11 +39,11 @@ target_include_directories(${PROJECT_NAME}
   PRIVATE
     src)
 
-target_compile_options(${PROJECT_NAME}
+target_compile_features(${PROJECT_NAME}
   PUBLIC
-    $<$<COMPILE_LANGUAGE:CXX>:-std=c++17>
-#    -Wno-variadic-macros
-#    -Wno-gnu-zero-variadic-macro-arguments
+    cxx_std_17)
+
+target_compile_options(${PROJECT_NAME}
   PRIVATE
     -Werror
     -Wall
@@ -57,5 +57,12 @@ install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-config
   PUBLIC_HEADER DESTINATION include/${PROJECT_NAME})
 install(EXPORT ${PROJECT_NAME}-config NAMESPACE vdc:: DESTINATION cmake)
 
-enable_testing()
-add_subdirectory(test)
+# init variables if not defined
+if(NOT DEFINED STDEX_BUILD_WITH_TESTS)
+  set(STDEX_BUILD_WITH_TESTS ON)
+endif()
+
+if (${STDEX_BUILD_WITH_TESTS})
+  enable_testing()
+  add_subdirectory(test)
+endif()
