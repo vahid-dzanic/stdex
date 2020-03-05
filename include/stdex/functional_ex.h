@@ -69,34 +69,40 @@ public:
     static_assert(_N < arity, "invalid index");
     using type = typename std::tuple_element<_N, arguments>::type;
   };
-  function(const std_func_type& func, const std::string& name = "")
-    : func_(func)
-    , name_(name)
+
+  explicit function(std_func_type&& func, std::string&& name = "") noexcept
+    : func_(std::forward<std_func_type>(func))
+    , name_(std::forward<std::string>(name))
   {}
-
-  // TODO vadz: fix 'rule of five'
-
-  //  function(const std_func_type& func, std::string&& name = "")
-  //    : mFunc(func)
-  //    , mName(std::move(name))
-  //  {
-  //  }
-
-  //  function(std_func_type&& func, const std::string& name = "")
-  //    : mFunc(std::move(func))
-  //    , mName(name)
-  //  {
-  //  }
-
-  explicit function(std_func_type&& func, std::string&& name = "")
-    : func_(std::move(func))
-    , name_(std::move(name))
-  {}
-
-  function(const function& rhs)
+  function(const function& rhs) noexcept
     : func_(rhs.func_)
     , name_(rhs.name_)
   {}
+  function& operator=(const function& rhs) noexcept
+  {
+    auto this_ref = *this;
+    if (rhs != this_ref)
+    {
+      this_ref.func_ = rhs.func_;
+      this_ref.name_ = rhs.name_;
+    }
+    return this_ref;
+  }
+  function(function&& rhs) noexcept
+    : func_(std::forward<std_func_type>(rhs.func_))
+    , name_(std::forward<std::string>(rhs.name_))
+  {}
+  function& operator=(function&& rhs) noexcept
+  {
+    auto this_ref = *this;
+    if (rhs != this_ref)
+    {
+      this_ref.func_(std::forward<std_func_type>(rhs.func_));
+      this_ref.name_(std::forward<std::string>(rhs.name_));
+    }
+    return this_ref;
+  }
+  ~function() = default;
 
   explicit operator bool() const noexcept { return static_cast<bool>(func_); }
 

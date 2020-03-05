@@ -12,9 +12,12 @@ target_link_libraries(fast_stdex
     gtest_main
     pthread)
 
+target_compile_features(fast_stdex
+  PUBLIC
+    cxx_std_17)
+
 target_compile_options(fast_stdex
   PRIVATE
-    $<$<COMPILE_LANGUAGE:CXX>:-std=c++17>
     -Werror
     -Wall
     -Wextra
